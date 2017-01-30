@@ -27,6 +27,12 @@ describe("attribute_remover", function ()
       assert.are.same({ foo = { lorem = "ipsum" } }, result)
     end)
 
+    it('supports removing table attributes', function ()
+      local source = { foo = { bar = "baz" } }
+      local result = attribute_remover.delete_attributes(source, { "foo" })
+      assert.are.same({ }, result)
+    end)
+
     context("when attribute does not exist", function ()
       it("removes nothing on shallow attributes", function ()
         local source = { foo = "bar" }

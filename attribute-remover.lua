@@ -14,19 +14,25 @@ local function deep_copy(obj, seen)
   return res
 end
 
+local function split_string(source, separator)
+  local result = { }
+  for s in source:gmatch(separator) do
+    result[#result + 1] = s
+  end
+  return result
+end
+
 local function delete_attribute(source, attribute)
   local table = source
-  local iterator = attribute:gmatch("([^.%s]+)")
-  for k in iterator do  
-    if type(table[k]) ~= "table" then
-      attribute = k
-      break
+  local segments = split_string(attribute, "([^.%s]+)")
+  for i = 1, (#segments-1) do
+    local segment = segments[i]
+    if type(table[segment]) ~= 'table' then
+      return
     end
-    table = table[k]
-  end 
-  if not iterator() then
-    table[attribute] = nil
+    table = table[segment]
   end
+  table[segments[#segments]] = nil
 end
 
 function attribute_remover.delete_attributes(source, attributes)
