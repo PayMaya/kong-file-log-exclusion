@@ -46,9 +46,9 @@ end
 local function log(premature, conf, message)
   if premature then return end
 
-	if conf.exclusion then
-		message = attribute_remover.delete_attributes(message, conf.exclusion)
-	end
+  if conf.exclusion then
+    message = attribute_remover.delete_attributes(message, conf.exclusion)
+  end
 
   local msg = cjson.encode(message).."\n"
 

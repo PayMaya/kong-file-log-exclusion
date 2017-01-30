@@ -12,6 +12,6 @@ end
 return {
   fields = {
     path = { required = true, type = "string", func = validate_file },
-		exclusion = { required = false, type = "array" },
+    exclusion = { required = false, type = "array" },
   }
 }
