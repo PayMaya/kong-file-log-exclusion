@@ -19,7 +19,7 @@ Configuration is similar to Kong's default file logging plugin
 using the `exclusion` config.
 ```
 curl -X POST http://kong:8001/apis/{api}/plugins \
-       --data "name=file-log" \
+       --data "name=file-log-exclusion" \
        --data "config.path=/tmp/file.log" \
        --data "config.exclusion=request.headers, response"
 ```
